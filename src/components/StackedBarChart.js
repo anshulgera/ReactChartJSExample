@@ -1,37 +1,26 @@
 import React, { Component } from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 
 class StackedBarChart extends Component{
     constructor(props){
       super(props);
       this.state = {
-        chartData:props.chartData
+        stackChartData:props.stackChartData
       }
     }
   
-    static defaultProps = {
-      displayTitle:true,
-      displayLegend: true,
-      legendPosition:'right',
-      location:'City'
-    }
+    // static defaultProps = {
+    //   displayTitle:true,
+    //   displayLegend: true,
+    //   legendPosition:'right',
+    //   location:'City'
+    // }
   
     render(){
       return (
         <div className="chart">
           <Bar
-            data={this.state.chartData}
-            // options={{
-            //   title:{
-            //     display:this.props.displayTitle,
-            //     text:'Largest Cities In '+this.props.location,
-            //     fontSize:25
-            //   },
-            //   legend:{
-            //     display:this.props.displayLegend,
-            //     position:this.props.legendPosition
-            //   }
-            // }}
+            data={this.state.stackChartData}
           
           options = {{
           scales: {
@@ -43,7 +32,7 @@ class StackedBarChart extends Component{
             }]
             }
         }}
-        width={600} height={250}
+        width={600} height={350}
         />
         </div>
       )

@@ -11,25 +11,29 @@ const StackedBarChart = Loadable({
   loading
 });
 
+ const TimeScaleChart = Loadable({
+   loader: () => import('./components/TimeScaleChart.js'),
+   loading
+ });
+
 class App extends Component {
   
   constructor(){
     super();
     this.state = {
-      chartData:{}
+      stackChartData:{},
+      timeScaleChartData:{}
     }
   }
 
   componentWillMount(){
-    this.getChartData();
+    this.getStackChartData();
+    this.getTimeScaleChartData();
   }
-
-
   
-  getChartData(){
+  getStackChartData(){
     // Ajax calls here
-    this.setState({
-      // chartData:{
+    // chartData:{
       //   labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
       //   // yAxisID: "bar-stacked",
       //   datasets:[
@@ -55,7 +59,8 @@ class App extends Component {
       //     }
       //   ]
       // }
-      chartData: {
+    this.setState({
+      stackChartData: {
         labels: ['Product_1','Product_2', 'Product_3', 'Product_4', 'Product_5'],
         datasets: [
           
@@ -79,11 +84,37 @@ class App extends Component {
     });
   }
 
+  getTimeScaleChartData(){
+    this.setState({
+    timeScaleChartData: {
+      labels: [new Date(2018, 11), new Date(2018, 12), new Date(2019, 1)],
+      datasets:[
+        {
+          fill:false,
+          label: 'Product_A',
+          data: [10,15,13],
+          borderColor: '#D6E9C6', // green
+          backgroundColor: '#D6E9C6', // green
+          lineTension: 0
+        },
+        {
+          fill:false,
+          label: 'Product_B',
+          data: [15,8,18],
+          borderColor: '#EBCCD1',
+          backgroundColor: '#EBCCD1', // red
+          lineTension: 0
+        }
+      ]
+    }
+  })
+}
+
   state = {
     showComponent: false
   };
 
-  handleClick = () => {
+  onClickStackBarChart = () => {
     this.setState({
       showComponent: true
     });
@@ -96,7 +127,9 @@ class App extends Component {
         <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <StackedBarChart chartData={this.state.chartData}/>
+          <StackedBarChart stackChartData={this.state.stackChartData}/>
+          <br/>
+          <TimeScaleChart timeScaleChartData={this.state.timeScaleChartData} />
           </div>
         </div>
       );
@@ -106,7 +139,7 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1>Hello!</h1>
-          <button onClick={this.handleClick}>StackedBarChart</button>
+          <button onClick={this.onClickStackBarChart}>DisplayCharts</button>
           </div>
         </div>
       );
