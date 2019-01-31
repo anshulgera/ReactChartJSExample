@@ -1,10 +1,12 @@
 [
-        "Product_A" : {
+        {
+            "JOB_NAME" : "Product_A",  
             "SUCCESS" : 50,
             "FAILED" : 12,
             "ABORTED": 4
         },
-        "Product_B" : {
+        {
+            "JOB_NAME" : "Product_B",
             "SUCCESS" : 54,
             "FAILED" : 10,
             "ABORTED": 8
