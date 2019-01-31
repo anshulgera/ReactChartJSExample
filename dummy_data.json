@@ -1,5 +1,4 @@
-{
-    "products_info":{
+[
         "Product_A" : {
             "SUCCESS" : 50,
             "FAILED" : 12,
@@ -10,5 +9,5 @@
             "FAILED" : 10,
             "ABORTED": 8
         }
-    }
-}
+    
+]
